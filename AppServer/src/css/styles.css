@@ -1,0 +1,7 @@
+.app{
+    text-align: center;
+}
+.app .searchBar{
+    width:50%;
+    display: inline-block;
+}

@@ -4,7 +4,7 @@ const {resolve}= require("path");
 module.exports= {
 	context: resolve('src'),
 	entry: {
-		app: './index'
+		app: './js/index'
 	},
 	output: {
 		path: resolve('dist'),
