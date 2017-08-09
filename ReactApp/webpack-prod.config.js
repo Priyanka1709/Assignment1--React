@@ -1,9 +1,7 @@
 const webpack= require("webpack");
-let config= require("./webpack.config");
+let config= require("./webpack.config");    
 
-config.devtool= 'source-map';
-
-config.plugins= [
+config.plugins.push(
     new webpack.optimize.UglifyJsPlugin({
             minimize: true,
             compress: {
@@ -11,6 +9,6 @@ config.plugins= [
             }
         }
     )
-]
+)
 
 module.exports= config;

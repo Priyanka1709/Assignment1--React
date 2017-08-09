@@ -1,14 +1,18 @@
 import { join } from 'path';
 import apiConfig from './apiConfig';
-var axios= require('axios');
 
 export function getAllCards(){
     return getRequest(join(apiConfig.baseUrl, apiConfig.cards));
 }
 
+export function getImage(imageUrl){
+    return join(apiConfig.baseUrl, apiConfig.images, imageUrl);
+}
+
 function getRequest(url){
-    return axios.get(url)
+    return fetch(url)
             .then((response)=> {
-                return response.data;
-            });
+                return response.json();
+            })
+            .then((data)=> data);
 }

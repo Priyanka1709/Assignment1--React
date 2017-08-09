@@ -24,16 +24,26 @@ app.listen(port, function (error) {
 app.get('/', function (req, res) {
     res.sendFile(path.join(__dirname, 'index.html'));
 });
+app.get('/details/:id', function (req, res) {
+    res.sendFile(path.join(__dirname, 'index.html'));
+});
+app.get('/search/:id', function (req, res) {
+    res.sendFile(path.join(__dirname, 'index.html'));
+});
 
-app.get('/cards', function(req, res, next) {
+app.get('/cards', function(req, res) {
     res.send(cards);
 });
 
-app.get('/cards/:id', function(req, res, next) {
+app.get('/cards/:id', function(req, res) {
     res.send(req.params.id);
 });
 
-app.post('/cards/:id', function(req, res, next) {
+app.get('/images/:path', function(req, res) {
+    res.sendFile(path.join(__dirname, 'assets/images', req.params.path));
+});
+
+app.post('/cards/:id', function(req, res) {
   // res.send(req.params.id);
 });
 

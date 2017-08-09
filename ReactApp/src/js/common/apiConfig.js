@@ -1,6 +1,7 @@
 const apiConfig= {
     baseUrl: '/',
-    cards: 'cards'
+    cards: 'cards',
+    images:'images'
 }
 
 export default apiConfig;
