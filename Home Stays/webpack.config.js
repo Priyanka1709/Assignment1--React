@@ -4,6 +4,7 @@ const {resolve}= require("path");
 module.exports= {
 	context: resolve('src'),
 	entry: {
+		vendor: ["lodash"],
 		app: './js/index'
 	},
 	output: {
@@ -14,12 +15,17 @@ module.exports= {
     resolve: {
         extensions: ['.js', '.jsx'],
 	},
-	plugins: [],
+	plugins: [
+		new webpack.optimize.CommonsChunkPlugin({
+			name: "vendor",
+			filename: "vendor.js",
+		})
+	],
 	module: {
 		loaders: [
 			{
 				test: /\.(js|jsx)$/,
-				loaders: ['babel-loader'],
+				loaders: ['babel-loader', 'eslint-loader'],
 				exclude: /node_modules/
 			},
 			{

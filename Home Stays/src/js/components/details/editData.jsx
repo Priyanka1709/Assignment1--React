@@ -30,4 +30,25 @@ const Edit = (props) => {
     );
 }
 
+Edit.propTypes= {
+    cancelHandler: PropTypes.func.isRequired,
+    saveHandler: PropTypes.func.isRequired,
+    clearHandler: PropTypes.func.isRequired,
+    name: PropTypes.string,
+    nameRef: PropTypes.func.isRequired,
+    location: PropTypes.string,
+    locationRef: PropTypes.func.isRequired,
+    avgPrice: PropTypes.string,
+    avgPriceRef: PropTypes.func.isRequired,
+    offer: PropTypes.string,
+    offerRef: PropTypes.func.isRequired,
+}
+
+Edit.defaultProps= {
+    name: "",
+    location: "",
+    avgPrice: "",
+    offer: "",
+}
+
 export default Edit;

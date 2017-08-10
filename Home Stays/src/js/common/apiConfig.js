@@ -1,7 +1,7 @@
-const apiConfig= {
+const apiConfig = {
     baseUrl: '/',
     cards: 'cards',
-    images:'images'
-}
+    images: 'images',
+};
 
 export default apiConfig;

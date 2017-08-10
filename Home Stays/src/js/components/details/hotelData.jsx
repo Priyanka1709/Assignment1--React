@@ -26,4 +26,23 @@ const HotelData = (props) => {
     );
 }
 
+HotelData.propTypes= {
+    editHandler: PropTypes.func.isRequired,
+    backHandler: PropTypes.func.isRequired,
+    getImage: PropTypes.func.isRequired,
+    image: PropTypes.string,
+    name: PropTypes.string,
+    location: PropTypes.string,
+    avgPrice: PropTypes.string,
+    offer: PropTypes.string,
+}
+
+HotelData.defaultProps= {
+    image: "",
+    name: "",
+    location: "",
+    avgPrice: "",
+    offer: "",
+}
+
 export default HotelData;

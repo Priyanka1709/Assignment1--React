@@ -4,35 +4,41 @@ import { getAllCards } from '../../common/apiHelper';
 import Card from './card';
 import _ from 'lodash';
 
-class CardsPane extends React.Component{
-    constructor(props){
+class CardsPane extends React.Component {
+    constructor(props) {
         super(props);
-        this.state= {
-            cards: null
-        }
+        this.state = {
+            cards: null,
+        };
     }
-    componentDidMount(){
+    componentDidMount() {
         getAllCards()
-        .then((value) => this.setState({
-            cards: value
-        }));
+            .then((value) => this.setState({
+                cards: value,
+            }));
     }
-    render(){
+    render() {
         return (
-            <div className="cardsPane">  
-                {!this.state.cards? <h3>{`Loading...`}</h3>: _.map(this.state.cards, (value, index)=> {
-                            if(this.props.searchString && value.name.toLowerCase().indexOf(this.props.searchString.toLowerCase())>-1){
-                                return <Card key={index} item={value}></Card>
-                            }
-                            else if(!this.props.searchString){
-                                return <Card key={index} item={value}></Card>
-                            }
-                        }
-                    )
+            <div className="cardsPane">
+                {this.state.cards ? _.map(this.state.cards, (value, index) => {
+                    if (this.props.searchString && value.name.toLowerCase().indexOf(this.props.searchString.toLowerCase()) > -1) {
+                        return <Card key={index} item={value}/>;
+                    } else if (!this.props.searchString) {
+                        return <Card key={index} item={value}/>;
+                    }
+                }) : <h3>{'Loading...'}</h3>
                 }
             </div>
         );
     }
+}
+
+CardsPane.propTypes = {
+    searchString: PropTypes.string,
+};
+
+CardsPane.defaultProps = {
+    searchString: '',
 };
 
 export default CardsPane;

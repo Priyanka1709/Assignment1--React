@@ -11,16 +11,8 @@ ReactDOM.render(
     <Router>
         <div className='app container'>
             <Route exact path="/" component={AppContainer}/>
-            <Route exact path="/search/:string" component={(props) => {
-                return (
-                    <AppContainer searchString={props.match.params.string}/>
-                )
-            }}/>
-            <Route exact path="/details/:id" component={(props) => {
-                return (
-                    <Details id={props.match.params.id}/>               
-                )
-            }}/>
+            <Route exact path="/search/:string" component={(props) => <AppContainer searchString={props.match.params.string}/>}/>
+            <Route exact path="/details/:id" component={(props) => <Details id={props.match.params.id}/>}/>
         </div>
     </Router>,
     document.getElementById('container')

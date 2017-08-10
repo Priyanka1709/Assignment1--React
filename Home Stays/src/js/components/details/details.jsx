@@ -84,4 +84,8 @@ class Details extends React.Component{
     }
 }
 
+Details.propTypes= {
+    id: PropTypes.string.isRequired,
+}
+
 export default Details;

@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Route } from 'react-router-dom';
 
 import Header from './header/header';
 import SearchBar from './search/searchBar';
@@ -17,5 +16,16 @@ const App= (props) => {
         </div>
     );
 };
+
+App.propTypes= {
+    searchString: PropTypes.string,
+    searchHandler: PropTypes.func.isRequired,
+    clearHandler: PropTypes.func.isRequired,
+    inputRef: PropTypes.func.isRequired
+}
+
+App.defaultProps= {
+    searchString: ""
+}
 
 export default App;
