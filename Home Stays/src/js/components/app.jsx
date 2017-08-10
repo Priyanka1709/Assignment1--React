@@ -9,7 +9,7 @@ import Details from './details/details';
 
 const App= (props) => {
     return (
-        <div className='app container'>
+        <div>
             <Header/>
             <SearchBar searchString={props.searchString} searchHandler={props.searchHandler} clearHandler={props.clearHandler} inputRef={props.inputRef}/>
             <br/><br/>

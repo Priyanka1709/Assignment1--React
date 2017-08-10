@@ -5,6 +5,10 @@ export function getAllCards(){
     return getRequest(join(apiConfig.baseUrl, apiConfig.cards));
 }
 
+export function getCardDetails(id){
+    return getRequest(join(apiConfig.baseUrl, apiConfig.cards,id));
+}
+
 export function getImage(imageUrl){
     return join(apiConfig.baseUrl, apiConfig.images, imageUrl);
 }

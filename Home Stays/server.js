@@ -35,11 +35,19 @@ app.get('/search/:id', function (req, res) {
 });
 
 app.get('/cards', function(req, res) {
-    res.send(cards);
+    let data=[];
+    for(var prop in cards){
+        let obj={};
+        obj.id= prop;
+        obj.name=cards[prop].name;
+        obj.image=cards[prop].image;
+        data.push(obj);
+    }
+    res.send(data);
 });
 
 app.get('/cards/:id', function(req, res) {
-    res.send(req.params.id);
+    res.send(cards[req.params.id]);
 });
 
 app.get('/images/:path', function(req, res) {

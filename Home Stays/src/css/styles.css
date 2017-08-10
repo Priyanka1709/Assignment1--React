@@ -25,3 +25,14 @@
 .app .cardName{
     color:black;
 }
+.app .details .image{
+    max-width: 1000px;
+    max-height:1200px;
+}
+.app .details .data{
+    margin:30px;
+}
+.app .details .data .offers{
+    color:green;
+    font-size:large
+}

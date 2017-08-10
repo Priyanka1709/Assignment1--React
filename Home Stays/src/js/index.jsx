@@ -9,7 +9,7 @@ import '../css/styles.css';
 
 ReactDOM.render(
     <Router>
-        <div>
+        <div className='app container'>
             <Route exact path="/" component={AppContainer}/>
             <Route exact path="/search/:string" component={(props) => {
                 return (
