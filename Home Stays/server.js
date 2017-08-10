@@ -2,8 +2,8 @@ var express = require('express');
 var path= require('path');
 var webpack= require('webpack');
 var open= require('open');
-var fallback= require('express-history-api-fallback');
 var bodyParser = require('body-parser');
+var fs = require('fs');
 
 var cards= require('./data/cards');
 
@@ -13,7 +13,8 @@ const app = express();
 const port = 3000;
 
 app.use(bodyParser.urlencoded({ extended: false }))
-app.use(bodyParser.json())
+app.use(bodyParser.json());
+app.use(express.static(path.join(__dirname, 'dist')));
 
 app.listen(port, function (error) {
     if(error) {
@@ -26,17 +27,13 @@ app.listen(port, function (error) {
     
 });
 
-app.get('/', function (req, res) {
+function defaultHandler(req, res){
     res.sendFile(path.join(__dirname, 'index.html'));
-});
+}
 
-// app.use(fallback('index.html', { root: __dirname }));
-app.get('/details/:id', function (req, res) {
-    res.sendFile(path.join(__dirname, 'index.html'));
-});
-app.get('/search/:id', function (req, res) {
-    res.sendFile(path.join(__dirname, 'index.html'));
-});
+app.get('/',defaultHandler);
+app.get('/details/:id', defaultHandler);
+app.get('/search/:id',defaultHandler);
 
 app.get('/cards', function(req, res) {
     let data=[];
@@ -62,10 +59,12 @@ app.post('/cards/:id', function(req, res) {
     for(var prop in req.body){
         cards[req.params.id][prop]= req.body[prop]
     }
+    fs.writeFile('data/cards.json', JSON.stringify(cards), function (err) {
+        if (err) return console.log(err);
+    });
     res.send(true);
 });
 
-app.use(express.static(path.join(__dirname, 'dist')));
 if (isDevelopment) {  
     var devConfig= require('./webpack-dev.config');
 

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 const SearchBar= (props) => {
     return (
         <div>
-            <input ref={props.inputRef} type='text' className='searchBar form-control' defaultValue={props.searchString}/>
+            <input ref={props.inputRef} type='text' className='searchBar form-control' value={props.searchString}/>
             <button className='btn btn-info' onClick={props.searchHandler}>
                 <span>Search</span> 
             </button>
