@@ -8,7 +8,7 @@ class CardsPane extends React.Component{
     constructor(props){
         super(props);
         this.state= {
-            cards: []
+            cards: null
         }
     }
     componentDidMount(){
@@ -20,7 +20,7 @@ class CardsPane extends React.Component{
     render(){
         return (
             <div className="cardsPane">  
-                {!this.state.cards.length? <h3>{`Loading...`}</h3>: _.map(this.state.cards, (value, index)=> {
+                {!this.state.cards? <h3>{`Loading...`}</h3>: _.map(this.state.cards, (value, index)=> {
                             if(this.props.searchString && value.name.toLowerCase().indexOf(this.props.searchString.toLowerCase())>-1){
                                 return <Card key={index} item={value}></Card>
                             }

@@ -6,6 +6,7 @@ const Edit = (props) => {
         <div className="modal-dialog">
             <div className="modal-content">
                 <div className="modal-header">
+                    <button type="button" className="close" onClick={props.cancelHandler}>&times;</button>  
                     <h4 className="modal-title">Edit</h4>
                 </div>
                 <div className="modal-body text-left">
@@ -22,7 +23,7 @@ const Edit = (props) => {
                 </div>
                 <div className="modal-footer">
                     <button type="button" className="btn btn-primary" onClick={props.saveHandler}>Save</button>
-                    <button type="button" className="btn btn-default" onClick={props.cancelHandler}>Cancel</button>
+                    <button type="button" className="btn btn-default" onClick={props.clearHandler}>Clear</button>
                 </div>
             </div>
         </div>

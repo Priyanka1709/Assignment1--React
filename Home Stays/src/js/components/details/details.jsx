@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { getCardDetails, getImage } from '../../common/apiHelper';
-import Edit from './edit';
+import Edit from './editData';
+import HotelData from './hotelData';
+import { postCardDetails } from '../../common/apiHelper';
 
 class Details extends React.Component{
     constructor(props){
@@ -14,6 +16,7 @@ class Details extends React.Component{
         this.backHandler= this.backHandler.bind(this);
         this.editCancelHandler= this.editCancelHandler.bind(this);
         this.editSaveHandler= this.editSaveHandler.bind(this);
+        this.editClearHandler= this.editClearHandler.bind(this);
     }
     componentDidMount(){
         getCardDetails(this.props.id)
@@ -33,9 +36,29 @@ class Details extends React.Component{
     }
 
     editSaveHandler(){
-        this.setState({
-            editMode: false
+        let name= this.nameInputElement.value;
+        let location= this.locationInputElement.value;
+        let avgPrice= this.avgPriceInputElement.value;
+        let offer= this.offerInputElement.value;
+
+        postCardDetails(this.props.id, {name, location, avgPrice, offer})
+        .then(result => {
+            this.setState({
+                editMode: false
+            })
+            return getCardDetails(this.props.id)
         })
+        .then((value) => this.setState({
+            details: value
+        }));
+        
+    }
+
+    editClearHandler(){
+        this.nameInputElement.value= '';
+        this.locationInputElement.value= '';
+        this.avgPriceInputElement.value= '';
+        this.offerInputElement.value= '';
     }
 
     editCancelHandler(){
@@ -47,33 +70,14 @@ class Details extends React.Component{
     render(){
         return (
             <div className="details">
-                {!this.state.details? <h3>{`Loading...`}</h3>:
-                                <div>
-                                    <img className="image" src= {getImage(this.state.details.image)}/>
-                                    {this.state.editMode?
-                                        <Edit name= {this.state.details.name} nameRef={el => this.nameInputElement = el} location={this.state.details.location} locationRef={el => this.locationInputElement = el} avgPrice={this.state.details.avgPrice} avgPriceRef={el => this.avgPriceInputElement = el} offer={this.state.details.offer} offerRef={el => this.offerInputElement = el} saveHandler={this.editSaveHandler} cancelHandler={this.editCancelHandler}/>
-                                        :
-                                        <div className="data">
-                                            <h1>{this.state.details.name}</h1>
-                                            <h6>Weekend breaks | Affordable prices</h6>
-                                            <p>
-                                                <b>Location: </b>
-                                                {this.state.details.location}
-                                            </p>
-                                            <p>
-                                                <b>Average Price: </b>
-                                                {this.state.details.avgPrice}
-                                            </p>
-                                            <p className="offers">
-                                                {this.state.details.offer}
-                                            </p>
-                                            <button type="button" className="btn btn-primary" onClick={this.editHandler}>Edit</button>
-                                            <button type="button" className="btn btn-default" onClick={this.backHandler}>Back to Home</button>
-                                        </div>
-                                    }
-                                    
-                                </div>
-                            
+                {!this.state.details? 
+                    <h3>{`Loading...`}</h3>
+                    :
+                     this.state.editMode?
+                        <Edit name= {this.state.details.name} nameRef={el => this.nameInputElement = el} location={this.state.details.location} locationRef={el => this.locationInputElement = el} avgPrice={this.state.details.avgPrice} avgPriceRef={el => this.avgPriceInputElement = el} offer={this.state.details.offer} offerRef={el => this.offerInputElement = el} saveHandler={this.editSaveHandler} clearHandler={this.editClearHandler} cancelHandler={this.editCancelHandler} />
+                        :
+                        <HotelData getImage={getImage} image={this.state.details.image} name={this.state.details.name} location={this.state.details.location} avgPrice={this.state.details.avgPrice} offer={this.state.details.offer} editHandler={this.editHandler} backHandler={this.backHandler} />
+                     
                 }      
             </div>
         );

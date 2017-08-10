@@ -3,6 +3,7 @@ var path= require('path');
 var webpack= require('webpack');
 var open= require('open');
 var fallback= require('express-history-api-fallback');
+var bodyParser = require('body-parser');
 
 var cards= require('./data/cards');
 
@@ -10,6 +11,9 @@ const isDevelopment = process.env.NODE_ENV !== "production";
 
 const app = express();
 const port = 3000;
+
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
 
 app.listen(port, function (error) {
     if(error) {
@@ -55,7 +59,10 @@ app.get('/images/:path', function(req, res) {
 });
 
 app.post('/cards/:id', function(req, res) {
-  // res.send(req.params.id);
+    for(var prop in req.body){
+        cards[req.params.id][prop]= req.body[prop]
+    }
+    res.send(true);
 });
 
 app.use(express.static(path.join(__dirname, 'dist')));
