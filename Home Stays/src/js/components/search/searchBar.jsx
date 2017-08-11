@@ -4,10 +4,10 @@ import PropTypes from 'prop-types';
 const SearchBar = (props) => (
     <div>
         <input ref={props.inputRef} type={'text'} className={'searchBar form-control'} defaultValue={props.searchString}/>
-        <button className={'btn btn-info'} onClick={props.handleSearch}>
+        <button className={'btn btn-info'} onClick={props.onSearch}>
             <span>Search</span>
         </button>
-        <button className={'btn'} onClick={props.handleClear}>
+        <button className={'btn'} onClick={props.onClear}>
             <span>Clear</span>
         </button>
     </div>
@@ -15,8 +15,8 @@ const SearchBar = (props) => (
 
 SearchBar.propTypes = {
     searchString: PropTypes.string,
-    handleSearch: PropTypes.func.isRequired,
-    handleClear: PropTypes.func.isRequired,
+    onSearch: PropTypes.func.isRequired,
+    onClear: PropTypes.func.isRequired,
     inputRef: PropTypes.func.isRequired,
 };
 

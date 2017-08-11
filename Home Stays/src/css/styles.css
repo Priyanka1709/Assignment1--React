@@ -13,10 +13,14 @@
 .app .cardBlock{
     display: inline-table;
     margin:20px;
-    border:1px solid #ddd;
+    border-radius: 10px;
     text-align: center;
     width:200px;
     height:220px;
+    box-shadow: 4px 4px 2px #888888;
+}
+.app .cardBlock:hover {
+    box-shadow: 6px 6px 3px #888888;
 }
 .app .cardImg{
     width:200px;
@@ -28,6 +32,7 @@
 .app .details .image{
     max-width: 100%;
     max-height:500px;
+    box-shadow: 5px 5px 12px #888888;
 }
 .app .details .data{
     margin:30px;

@@ -12,6 +12,17 @@
         "node": true
     },
     "plugins": ["lodash", "react", "import", "xo", "destructuring", "switch-case", "promise"],
+    "settings": {
+        "react": {
+            "version": "15.5"
+        },
+        "import/ignore": [
+            "templates",
+            "libs",
+            "\\.json",
+            "node_modules"
+        ]
+    },
     "globals": {
         // added by the build process
         "BUILD_IS_DEBUG": false,
@@ -260,7 +271,6 @@
         ],
         "keyword-spacing": "error",
         "line-comment-position": "off",
-        "linebreak-style": ["error", "windows"],
         "lines-around-comment": [
             "error",
             {
@@ -609,7 +619,6 @@
         "react/jsx-indent-props": ["error", 4],
         "react/jsx-indent": ["error", 4],
         "react/jsx-key": "error",
-        "react/jsx-no-bind": "error",
         "react/jsx-no-comment-textnodes": "error",
         "react/jsx-no-duplicate-props": "error",
         "react/jsx-no-literals": "off",
@@ -630,7 +639,6 @@
         "react/jsx-uses-vars": "error",
         "react/jsx-wrap-multilines": "error",
         // import - static analysis
-        "import/no-unresolved": "error",
         "import/named": "error",
         "import/default": "error",
         "import/namespace": "error",

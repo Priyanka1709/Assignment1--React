@@ -1,23 +1,31 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { bindHandlers } from 'react-bind-handlers';
 import App from '../components/app';
 
-class AppContainer extends React.Component{
-    constructor(props){
-        super(props);
-        this.searchHandler= this.searchHandler.bind(this);
-        this.clearHandler= this.clearHandler.bind(this);
+class AppContainer extends React.Component {
+    handleSearch() {
+        window.location.href = this.inputElement.value ? '/search/' + this.inputElement.value : '/';
     }
-    searchHandler(){
-        window.location.href = this.inputElement.value? `/search/${this.inputElement.value}`: `/`;
+    handleClear() {
+        this.inputElement.value = '';
     }
-    clearHandler(){
-        this.inputElement.value= '';
-    }
-    render(){
+    render() {
         return (
-           <App searchString={this.props.searchString} clearHandler={this.clearHandler} searchHandler={this.searchHandler} inputRef={el => this.inputElement = el}/>
-        )
+            <App
+                searchString={this.props.match.params.string}
+                onClear={this.handleClear}
+                onSearch={this.handleSearch}
+                inputRef={(el) => {
+                    this.inputElement = el;
+                }}
+            />
+        );
     }
+}
+
+AppContainer.propTypes = {
+    match: PropTypes.object.isRequired,
 };
 
-export default AppContainer;
+export default bindHandlers(AppContainer);
