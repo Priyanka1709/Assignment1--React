@@ -1,10 +1,10 @@
 import React from 'react';
 
 const Header = () => (
-    <div>
-        <h2>HOMESTAYS</h2>
-        <h5>Experience the new way to stay....</h5>
-    </div>
+    <nav className={'pageHeader navbar navbar-inverse'}>
+        <span className={'heading'}>HOMESTAYS</span>
+        <h4>Experience the new way to stay....</h4>
+    </nav>
 );
 
 export default Header;

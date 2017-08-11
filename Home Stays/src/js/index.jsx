@@ -1,20 +1,28 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import AppContainer from './container/appContainer';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Header from './components/header/header';
+import Footer from './components/footer/footer';
+import HomeContainer from './container/homeContainer';
 import DetailsContainer from './container/detailsContainer';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import '../css/styles.css';
 
 ReactDOM.render(
-    <Router>
-        <div className={'app container'}>
-            <Route exact path="/" component={AppContainer}/>
-            <Route exact path="/search/:string" component={AppContainer}/>
-            <Route exact path="/details/:id" component={DetailsContainer}/>
+    <div className={'app container'}>
+        <Header/>
+        <div className={'pageBody'}>
+            <Router>
+                <Switch>
+                    <Route exact path="/" component={HomeContainer}/>
+                    <Route exact path="/search/:string" component={HomeContainer}/>
+                    <Route exact path="/details/:id" component={DetailsContainer}/>
+                </Switch>
+            </Router>
         </div>
-    </Router>,
+        <Footer/>
+    </div>,
     document.getElementById('container')
 );
 

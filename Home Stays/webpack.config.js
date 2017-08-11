@@ -42,15 +42,15 @@ module.exports= {
 			},
 			{
 				test: /\.(woff|woff2)$/,
-				loaders: ['url-loader?prefix=font/&limit=5000'],
+				loaders: ['url-loader'],
 			},
 			{
 				test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
-				loaders: ['url-loader?limit=10000&mimetype=application/octet-stream'],
+				loaders: ['url-loader'],
 			},
 			{
 				test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
-				loaders: ['url-loader?limit=10000&mimetype=image/svg+xml'],
+				loaders: ['url-loader'],
 			}
 		]
 	}

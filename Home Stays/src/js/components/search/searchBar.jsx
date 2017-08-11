@@ -5,10 +5,10 @@ const SearchBar = (props) => (
     <div>
         <input ref={props.inputRef} type={'text'} className={'searchBar form-control'} defaultValue={props.searchString}/>
         <button className={'btn btn-info'} onClick={props.onSearch}>
-            <span>Search</span>
+            <span className={'glyphicon glyphicon-search'}></span>
         </button>
         <button className={'btn'} onClick={props.onClear}>
-            <span>Clear</span>
+            <span className={'glyphicon glyphicon-remove'}></span>
         </button>
     </div>
 );

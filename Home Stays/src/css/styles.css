@@ -1,6 +1,20 @@
+html, body, #container, .app{
+    height:100%;
+}
 .app{
     text-align: center;
     background: linear-gradient(navajowhite, white);
+}
+.app .pageHeader, .app .pageFooter{
+    background-color: gray;
+    color: white;
+    font-family: cursive;
+}
+.app .pageHeader .heading{
+    font-size:30px;
+}
+.app .pageBody{
+    min-height:80%;
 }
 .app .searchBar{
     width:50%;
