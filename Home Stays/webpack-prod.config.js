@@ -1,4 +1,5 @@
 const webpack= require("webpack");
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 let config= require("./webpack.config");    
 
 config.plugins.push(
@@ -15,6 +16,14 @@ config.plugins.push(
             "process.env": { 
                 NODE_ENV: JSON.stringify("production") 
             }
+        }
+    )
+)
+
+config.plugins.push( 
+    new OptimizeCssAssetsPlugin({
+            assetNameRegExp: /\.css$/,
+            cssProcessorOptions: { discardComments: { removeAll: true } }
         }
     )
 )
